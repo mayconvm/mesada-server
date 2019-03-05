@@ -1,0 +1,53 @@
+#!/bin/bash
+
+
+
+start() {
+	go run *.go > logs.log &
+}
+
+stop() {
+	port=`lsof -ti 6:1323 | sed -e 'N' -e 's/\n/ /g' -e 's/ [0-9]*/ /g'`
+
+    if [ "$port" != "" ]; then
+	   kill -9 $port
+    fi
+}
+
+logs() {
+	tail -f logs.log
+}
+
+
+
+opt1=$2
+declare -i VAR=1;
+TOTAL=$#
+for CMD in "$@"
+do
+    case $CMD in
+        start)
+            start
+            break
+            ;;
+        stop)
+            stop
+            break
+            ;;
+        logs)
+            logs
+            break
+            ;;
+        *) echo "$CMD"
+            option="$CMD"
+            if [ "$VAR" = "$TOTAL" ]; then
+                break
+            fi
+            ;;
+    esac
+
+    VAR=$VAR+1
+    CMD='$'$VAR
+    eval CMD="$CMD"
+done
+
