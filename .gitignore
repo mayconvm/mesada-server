@@ -13,3 +13,7 @@
 
 # dependencies
 vendor/*
+
+# outhers
+logs.log
+process.pid
