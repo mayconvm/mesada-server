@@ -18,6 +18,10 @@ logs() {
 	tail -f logs.log
 }
 
+restart() {
+    stop
+    start
+}
 
 
 opt1=$2
@@ -36,6 +40,10 @@ do
             ;;
         logs)
             logs
+            break
+            ;;
+        restart)
+            restart
             break
             ;;
         *) echo "$CMD"

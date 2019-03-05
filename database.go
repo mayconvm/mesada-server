@@ -17,4 +17,6 @@ func connDatabase() {
 
 	// env dev
 	orm.Debug = true
+
+	orm.RunSyncdb("default", false, true)
 }

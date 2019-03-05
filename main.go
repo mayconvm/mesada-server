@@ -22,14 +22,15 @@ func main() {
 	})
 
 
-	// database
-	connDatabase()
 
 	///////////
 	// users //
 	///////////
 	initUser(e)
+	initChild(e)
 
+	// database
+	connDatabase()
 
 	// Start server
 	e.Logger.Fatal(e.Start(":1323"))
